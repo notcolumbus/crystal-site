@@ -34,7 +34,7 @@ export default function CcLogo() {
                 innerGlow={0.34}
                 outerGlow={0.37}
                 speed={1.02}
-                scale={1}
+                scale={0.4}
             />
         </div>
     );
