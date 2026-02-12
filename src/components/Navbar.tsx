@@ -15,15 +15,15 @@ export default function Navbar() {
                 className="border border-white/40 shadow-xl backdrop-blur-xl"
             >
                 <div className="relative flex items-center justify-between px-6 w-full h-full">
-                    <div className="text-2xl tracking-tighter text-black font-medium">
+                    <div className="text-2xl tracking-tighter text-brand font-semibold">
                         Crystal Cho
                     </div>
 
 
                     <div className="absolute left-1/2 -translate-x-1/2 flex items-center gap-10">
-                        <button className="text-sm font-semibold text-slate-700 hover:text-blue-600 transition-all cursor-pointer">Product</button>
-                        <button className="text-sm font-semibold text-slate-700 hover:text-blue-600 transition-all cursor-pointer">Visual</button>
-                        <button className="text-sm font-semibold text-slate-700 hover:text-blue-600 transition-all cursor-pointer">About</button>
+                        <button className="text-sm font-semibold text-slate-700 hover:text-brand transition-all cursor-pointer">Product</button>
+                        <button className="text-sm font-semibold text-slate-700 hover:text-brand transition-all cursor-pointer">Visual</button>
+                        <button className="text-sm font-semibold text-slate-700 hover:text-brand transition-all cursor-pointer">About</button>
                     </div>
 
 

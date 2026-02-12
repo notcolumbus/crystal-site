@@ -26,7 +26,7 @@ export default function CcLogo() {
                 width={dimensions.width}
                 height={dimensions.height}
                 image={logo}
-                colors={["#0040ff", "#ffffff"]}
+                colors={["#0011FF", "#ffffff"]}
                 colorBack="#ffffff"
                 contour={0.54}
                 angle={32}
