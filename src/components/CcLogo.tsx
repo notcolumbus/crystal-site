@@ -30,7 +30,7 @@ export default function CcLogo() {
                 colorBack="#ffffff"
                 contour={0.54}
                 angle={32}
-                noise={0.74}
+                noise={0.5}
                 innerGlow={0.34}
                 outerGlow={0.37}
                 speed={1.02}
