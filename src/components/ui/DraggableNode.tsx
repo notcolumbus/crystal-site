@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Folder } from 'lucide-react';
 import type { DraggableItem } from '../../types';
@@ -9,33 +9,43 @@ interface DraggableNodeProps {
 }
 
 export const DraggableNode: React.FC<DraggableNodeProps> = ({ item, constraintsRef }) => {
+    const [zIndex, setZIndex] = useState(1);
+
     return (
         <motion.div
             drag
             dragConstraints={constraintsRef}
-            dragElastic={0.1}
+            dragElastic={0.05}
             dragMomentum={false}
             initial={{ x: item.defaultX, y: item.defaultY }}
-            className="absolute cursor-grab active:cursor-grabbing flex flex-col items-center gap-1 p-2 rounded-md hover:bg-black/5 transition-colors group"
-            style={{ width: 80 }}
+            onDragStart={() => setZIndex(50)}
+            onDragEnd={() => setZIndex(1)}
+            style={{ zIndex }}
+            className="absolute cursor-grab active:cursor-grabbing flex flex-col items-center gap-1 p-2 rounded-md hover:bg-black/5 transition-colors group select-none"
         >
             {item.type === 'folder' ? (
-                <div className="relative">
+                <div className="relative pointer-events-none">
                     <Folder fill="#3b82f6" stroke="none" size={56} className="drop-shadow-sm" />
                     <div className="absolute inset-0 bg-blue-400 opacity-0 group-hover:opacity-20 rounded-sm mix-blend-overlay transition-opacity" />
                 </div>
+            ) : item.content ? (
+                <div className="relative w-[300px] bg-white rounded-lg shadow-sm border border-slate-200 p-4 text-[13px] leading-relaxed text-slate-700 font-normal text-left pointer-events-none">
+                    {item.content}
+                </div>
             ) : (
-                <div className="relative w-14 h-14 bg-white rounded shadow border border-slate-200 overflow-hidden flex items-center justify-center">
+                <div className="relative w-[120px] h-[80px] bg-white rounded shadow-sm border border-slate-200 overflow-hidden flex items-center justify-center pointer-events-none">
                     {item.image ? (
-                        <img src={item.image} alt={item.name} className="w-full h-full object-cover select-none pointer-events-none" />
+                        <img src={item.image} alt={item.name} className="w-full h-full object-cover select-none pointer-events-none" draggable={false} />
                     ) : (
-                        <div className="text-xs text-slate-400 font-medium">TXT</div>
+                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">TXT</div>
                     )}
                 </div>
             )}
-            <span className="text-xs text-slate-800 text-center font-medium leading-tight px-1 rounded group-hover:bg-blue-500 group-hover:text-white mt-1">
-                {item.name}
-            </span>
+            {!item.content && (
+                <span className="text-[11px] text-slate-900 text-center font-bold leading-tight px-1.5 py-0.5 rounded group-hover:bg-[#0011FF] group-hover:text-white mt-1.5 pointer-events-none">
+                    {item.name}
+                </span>
+            )}
         </motion.div>
     );
 };

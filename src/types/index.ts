@@ -3,6 +3,7 @@ export interface DraggableItem {
     name: string;
     type: 'folder' | 'file';
     image?: string;
+    content?: string;
     defaultX: number;
     defaultY: number;
 }

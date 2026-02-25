@@ -1,116 +1,190 @@
-import { Outlet, NavLink, useLocation } from 'react-router-dom';
+import { Outlet, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import {
+    ChevronLeft,
+    ChevronRight,
+    Sparkles,
+    Link as LinkIcon,
+    Zap,
+    Hash,
+    Compass,
+    User,
+    Linkedin,
+    Mail,
+    FileText
+} from 'lucide-react';
 import CcLogo from '../CcLogo';
+import { TypewriterTitles } from '../ui/TypewriterTitles';
+import { useState, useCallback } from 'react';
 
 export const FinderLayout = () => {
     const location = useLocation();
+    const navigate = useNavigate();
+    const [activeSection, setActiveSection] = useState('Crystal Cho');
+
+    const isHome = location.pathname === '/';
 
     const getTitle = () => {
-        if (location.pathname === '/') return 'crystal cho — local';
+        if (isHome) return activeSection;
         const path = location.pathname.split('/')[1];
-        return path || 'crystal cho — local';
+        return path.charAt(0).toUpperCase() + path.slice(1) || 'Crystal Cho';
+    };
+
+    const handleSectionChange = useCallback((section: string) => {
+        setActiveSection(section);
+    }, []);
+
+    const sectionIds = ['crystal-cho', 'featured', 'expertise'];
+    const sectionNames = ['Crystal Cho', 'Featured', 'Expertise'];
+
+    const scrollToSection = (sectionId: string) => {
+        if (!isHome) {
+            navigate('/');
+            setTimeout(() => {
+                (window as any).__scrollToSection?.(sectionId);
+            }, 100);
+        } else {
+            (window as any).__scrollToSection?.(sectionId);
+        }
+    };
+
+    const handlePrev = () => {
+        if (isHome) {
+            const currentIndex = sectionNames.indexOf(activeSection);
+            if (currentIndex > 0) {
+                scrollToSection(sectionIds[currentIndex - 1]);
+            }
+        } else {
+            navigate(-1);
+        }
+    };
+
+    const handleNext = () => {
+        if (isHome) {
+            const currentIndex = sectionNames.indexOf(activeSection);
+            if (currentIndex < sectionIds.length - 1) {
+                scrollToSection(sectionIds[currentIndex + 1]);
+            }
+        } else {
+            navigate(1);
+        }
+    };
+
+    const sidebarScrollClass = (sectionId: string) => {
+        const sectionNames: Record<string, string> = {
+            'crystal-cho': 'Crystal Cho',
+            'featured': 'Featured',
+            'expertise': 'Expertise',
+        };
+        const isActive = isHome && activeSection === sectionNames[sectionId];
+        return `flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal transition-colors cursor-pointer ${isActive ? 'bg-[#E5E5E5] text-black' : 'text-[#333333] hover:bg-black/5'
+            }`;
     };
 
     const sidebarLinkClass = ({ isActive }: { isActive: boolean }) =>
-        `flex items-center gap-2 px-2 py-1.5 rounded-md text-sm font-semibold transition-colors ${isActive ? 'bg-slate-200/70 text-black' : 'text-black hover:bg-black/5'
+        `flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal transition-colors ${isActive && !isHome ? 'bg-[#E5E5E5] text-black' : 'text-[#333333] hover:bg-black/5'
         }`;
 
-    const BlueSquare = () => <div className="w-4 h-4 rounded-sm bg-[#0011FF] shrink-0" />;
+    const iconSize = 16;
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-slate-100">
+        <div className="fixed inset-0 flex items-center justify-center bg-slate-100 font-sans">
             {/* Background decoration */}
             <div className="absolute inset-0 bg-gradient-to-br from-slate-200 to-slate-100 -z-10" />
 
-            {/* Main Window Container - Replaced GlassSurface with raw CSS for performance and drag hit-box accuracy */}
-            <div className="w-full h-full overflow-hidden flex flex-col relative z-10 bg-white/40 backdrop-blur-3xl">
-                {/* Top Bar */}
-                <div className="h-[52px] w-full flex items-center px-4 shrink-0 border-b border-white/40 relative bg-white/30">
-                    <div className="flex gap-2 absolute left-4">
-                        <div className="w-3 h-3 rounded-full bg-red-400 border border-red-500/50" />
-                        <div className="w-3 h-3 rounded-full bg-yellow-400 border border-yellow-500/50" />
-                        <div className="w-3 h-3 rounded-full bg-green-400 border border-green-500/50" />
-                    </div>
-                    <div className="flex-1 flex justify-center items-center">
-                        <span className="font-bold text-lg text-black tracking-tight">{getTitle()}</span>
-                    </div>
-                    <div className="absolute right-4">
-                        <BlueSquare />
-                    </div>
-                </div>
+            {/* Main Window Container */}
+            <div className="w-full h-full overflow-hidden flex relative z-10 bg-white">
 
-                {/* Content Area */}
-                <div className="flex flex-1 overflow-hidden relative">
-                    {/* Sidebar */}
-                    <aside className="w-[220px] shrink-0 border-r border-white/40 flex flex-col overflow-y-auto bg-white/30">
-                        <div className="py-8 px-4 flex flex-col items-center">
-                            <CcLogo width={160} height={100} className="mb-2" simple={true} />
-                            <div className="text-[10px] text-slate-500 font-medium">product designer</div>
-                            <div className="text-[10px] text-slate-500 flex items-center gap-1 mt-1">
-                                <BlueSquare /> based in nyc
+                {/* Sidebar (Full Height Left) */}
+                <aside className="w-[230px] h-full shrink-0 border-r border-[#E5E5E5] flex flex-col overflow-y-auto bg-[#F6F6F6] z-20">
+                    <div className="pt-10 pb-8 px-4 flex flex-col items-center">
+                        <CcLogo width={160} height={100} className="mb-4" simple={true} />
+                        <TypewriterTitles />
+                        <div className="text-[10px] text-[#999999] font-bold flex items-center gap-1 tracking-[0.1em] uppercase">📍Based in NYC
+                        </div>
+                    </div>
+
+                    <nav className="flex flex-col px-3 pb-8 gap-8">
+                        {/* Favorites Section */}
+                        <div>
+                            <div className="px-3 text-[11px] font-bold text-[#ADADAD] mb-2 uppercase tracking-wider">Favorites</div>
+                            <div className="flex flex-col gap-0.5">
+                                <button onClick={() => scrollToSection('crystal-cho')} className={sidebarScrollClass('crystal-cho')}>
+                                    <Sparkles size={iconSize} className="text-[#0011FF]" /> Crystal Cho
+                                </button>
+                                <button onClick={() => scrollToSection('featured')} className={sidebarScrollClass('featured')}>
+                                    <LinkIcon size={iconSize} className="text-[#0011FF]" /> Featured
+                                </button>
+                                <button onClick={() => scrollToSection('expertise')} className={sidebarScrollClass('expertise')}>
+                                    <Zap size={iconSize} className="text-[#0011FF]" /> Expertise
+                                </button>
                             </div>
                         </div>
 
-                        <nav className="flex flex-col px-3 pb-8 gap-6">
-                            {/* Favorites Section */}
-                            <div>
-                                <div className="px-2 text-xs font-semibold text-slate-400 mb-1">favorites</div>
-                                <div className="flex flex-col gap-0.5">
-                                    <NavLink to="/" className={sidebarLinkClass}>
-                                        <BlueSquare /> crystal cho
-                                    </NavLink>
-                                    <NavLink to="/featured" className={sidebarLinkClass}>
-                                        <BlueSquare /> featured
-                                    </NavLink>
-                                    <NavLink to="/testimonials" className={sidebarLinkClass}>
-                                        <BlueSquare /> testimonials
-                                    </NavLink>
-                                </div>
+                        {/* Work Section */}
+                        <div>
+                            <div className="px-3 text-[11px] font-bold text-[#ADADAD] mb-2 uppercase tracking-wider">Work</div>
+                            <div className="flex flex-col gap-0.5">
+                                <NavLink to="/product" className={sidebarLinkClass}>
+                                    <Hash size={iconSize} className="text-[#0011FF]" /> Product
+                                </NavLink>
+                                <NavLink to="/visual" className={sidebarLinkClass}>
+                                    <Compass size={iconSize} className="text-[#0011FF]" /> Visual
+                                </NavLink>
                             </div>
+                        </div>
 
-                            {/* Work Section */}
-                            <div>
-                                <div className="px-2 text-xs font-semibold text-slate-400 mb-1">work</div>
-                                <div className="flex flex-col gap-0.5">
-                                    <NavLink to="/product" className={sidebarLinkClass}>
-                                        <BlueSquare /> product
-                                    </NavLink>
-                                    <NavLink to="/visual" className={sidebarLinkClass}>
-                                        <BlueSquare /> visual
-                                    </NavLink>
-                                </div>
+                        {/* More Section */}
+                        <div>
+                            <div className="px-3 text-[11px] font-bold text-[#ADADAD] mb-2 uppercase tracking-wider">More</div>
+                            <div className="flex flex-col gap-0.5">
+                                <NavLink to="/about" className={sidebarLinkClass}>
+                                    <User size={iconSize} className="text-[#0011FF]" /> About
+                                </NavLink>
                             </div>
+                        </div>
 
-                            {/* More Section */}
-                            <div>
-                                <div className="px-2 text-xs font-semibold text-slate-400 mb-1">more</div>
-                                <div className="flex flex-col gap-0.5">
-                                    <NavLink to="/about" className={sidebarLinkClass}>
-                                        <BlueSquare /> about
-                                    </NavLink>
-                                </div>
+                        {/* Locations Section */}
+                        <div>
+                            <div className="px-3 text-[11px] font-bold text-[#ADADAD] mb-2 uppercase tracking-wider">Locations</div>
+                            <div className="flex flex-col gap-0.5">
+                                <a href="#" className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal text-[#333333] hover:bg-black/5 transition-colors">
+                                    <Linkedin size={iconSize} className="text-[#0011FF]" /> Linkedin
+                                </a>
+                                <a href="#" className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal text-[#333333] hover:bg-black/5 transition-colors">
+                                    <Mail size={iconSize} className="text-[#0011FF]" /> Email
+                                </a>
+                                <a href="#" className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal text-[#333333] hover:bg-black/5 transition-colors">
+                                    <FileText size={iconSize} className="text-[#0011FF]" /> Resume
+                                </a>
                             </div>
+                        </div>
+                    </nav>
+                </aside>
 
-                            {/* Locations Section */}
-                            <div>
-                                <div className="px-2 text-xs font-semibold text-slate-400 mb-1">locations</div>
-                                <div className="flex flex-col gap-0.5">
-                                    <a href="#" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-sm font-semibold text-black hover:bg-black/5 transition-colors">
-                                        <BlueSquare /> linkedin
-                                    </a>
-                                    <a href="#" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-sm font-semibold text-black hover:bg-black/5 transition-colors">
-                                        <BlueSquare /> email
-                                    </a>
-                                    <a href="#" className="flex items-center gap-2 px-2 py-1.5 rounded-md text-sm font-semibold text-black hover:bg-black/5 transition-colors">
-                                        <BlueSquare /> resume
-                                    </a>
-                                </div>
+                {/* Right Column (Top Bar + Main) */}
+                <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+                    {/* Top Bar */}
+                    <div className="h-[52px] w-full flex items-center px-4 shrink-0 border-b border-[#E5E5E5] relative bg-white z-10">
+                        <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-4 mr-2">
+                                <button onClick={handlePrev} className="text-slate-400 hover:text-slate-600">
+                                    <ChevronLeft size={20} />
+                                </button>
+                                <button onClick={handleNext} className="text-slate-400 hover:text-slate-600">
+                                    <ChevronRight size={20} />
+                                </button>
                             </div>
-                        </nav>
-                    </aside>
+                            <span className="font-bold text-[19px] text-black tracking-tight">{getTitle()}</span>
+                        </div>
+
+                        <div className="absolute right-4">
+                            <div className="w-4 h-4 rounded-sm bg-[#0011FF]" />
+                        </div>
+                    </div>
 
                     {/* Main View */}
-                    <main className="flex-1 relative bg-white/50 overflow-hidden isolate">
-                        <Outlet />
+                    <main className="flex-1 relative bg-white overflow-hidden isolate">
+                        <Outlet context={{ onSectionChange: handleSectionChange }} />
                     </main>
                 </div>
             </div>
