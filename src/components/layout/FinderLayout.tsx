@@ -161,10 +161,10 @@ export const FinderLayout = () => {
                     </nav>
                 </aside>
 
-                {/* Right Column (Top Bar + Main) */}
-                <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-                    {/* Top Bar */}
-                    <div className="h-[52px] w-full flex items-center px-4 shrink-0 border-b border-[#E5E5E5] relative bg-white z-10">
+                {/* Right Column (Top Bar floats over Main) */}
+                <div className="flex-1 h-full overflow-hidden relative">
+                    {/* Top Bar - Glass (absolute overlay) */}
+                    <div className="absolute top-0 left-0 right-0 z-10 h-[52px] flex items-center px-4 bg-white/70 backdrop-blur-xl border-b border-black/5">
                         <div className="flex items-center gap-4">
                             <div className="flex items-center gap-4 mr-2">
                                 <button onClick={handlePrev} className="text-slate-400 hover:text-slate-600">
@@ -182,8 +182,8 @@ export const FinderLayout = () => {
                         </div>
                     </div>
 
-                    {/* Main View */}
-                    <main className="flex-1 relative bg-white overflow-hidden isolate">
+                    {/* Main View (full area, content scrolls under top bar) */}
+                    <main className="absolute inset-0 bg-white overflow-hidden isolate">
                         <Outlet context={{ onSectionChange: handleSectionChange }} />
                     </main>
                 </div>

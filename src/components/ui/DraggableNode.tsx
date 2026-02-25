@@ -23,7 +23,11 @@ export const DraggableNode: React.FC<DraggableNodeProps> = ({ item, constraintsR
             style={{ zIndex }}
             className="absolute cursor-grab active:cursor-grabbing flex flex-col items-center gap-1 p-2 rounded-md hover:bg-black/5 transition-colors group select-none"
         >
-            {item.type === 'folder' ? (
+            {item.type === 'widget' && item.widget ? (
+                <div className="pointer-events-none">
+                    {item.widget()}
+                </div>
+            ) : item.type === 'folder' ? (
                 <div className="relative pointer-events-none">
                     <Folder fill="#3b82f6" stroke="none" size={56} className="drop-shadow-sm" />
                     <div className="absolute inset-0 bg-blue-400 opacity-0 group-hover:opacity-20 rounded-sm mix-blend-overlay transition-opacity" />
@@ -33,16 +37,16 @@ export const DraggableNode: React.FC<DraggableNodeProps> = ({ item, constraintsR
                     {item.content}
                 </div>
             ) : (
-                <div className="relative w-[120px] h-[80px] bg-white rounded shadow-sm border border-slate-200 overflow-hidden flex items-center justify-center pointer-events-none">
+                <div className="relative bg-white rounded shadow-sm border border-slate-200 overflow-hidden flex items-center justify-center pointer-events-none">
                     {item.image ? (
-                        <img src={item.image} alt={item.name} className="w-full h-full object-cover select-none pointer-events-none" draggable={false} />
+                        <img src={item.image} alt={item.name} className="max-w-[240px] max-h-[180px] object-contain select-none pointer-events-none" draggable={false} />
                     ) : (
-                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">TXT</div>
+                        <div className="w-[80px] h-[60px] flex items-center justify-center text-[10px] text-slate-400 font-normal uppercase tracking-wider">TXT</div>
                     )}
                 </div>
             )}
-            {!item.content && (
-                <span className="text-[11px] text-slate-900 text-center font-bold leading-tight px-1.5 py-0.5 rounded group-hover:bg-[#0011FF] group-hover:text-white mt-1.5 pointer-events-none">
+            {item.type !== 'widget' && !item.content && (
+                <span className="text-[11px] text-slate-900 text-center font-normal leading-tight px-1.5 py-0.5 rounded group-hover:bg-[#0011FF] group-hover:text-white mt-1.5 pointer-events-none">
                     {item.name}
                 </span>
             )}
