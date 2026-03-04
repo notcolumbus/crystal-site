@@ -60,7 +60,7 @@ export const DraggableNode: React.FC<DraggableNodeProps> = ({ item, constraintsR
             ) : (
                 <div className="relative bg-white rounded shadow-sm border border-slate-200 overflow-hidden flex items-center justify-center pointer-events-none">
                     {item.image ? (
-                        <img src={item.image} alt={item.name} className="max-w-[480px] max-h-[360px] object-contain select-none pointer-events-none" draggable={false} />
+                        <img src={item.image} alt={item.name} className="max-w-[360px] max-h-[270px] object-contain select-none pointer-events-none" draggable={false} />
                     ) : (
                         <div className="w-[80px] h-[60px] flex items-center justify-center text-[10px] text-slate-400 font-normal uppercase tracking-wider">TXT</div>
                     )}
