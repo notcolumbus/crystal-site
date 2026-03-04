@@ -1,13 +1,19 @@
 import type { ReactNode } from 'react';
 
+type CSSPos = {
+    left?: string;
+    top?: string;
+    right?: string;
+    bottom?: string;
+};
+
 type BaseItem = {
     id: string;
     name: string;
-    defaultX: number;
-    defaultY: number;
+    pos: CSSPos;
 };
 
 export type DraggableItem =
-    | (BaseItem & { type: 'folder' })
-    | (BaseItem & { type: 'file'; image?: string; content?: string; contentStyle?: 'italic' | 'normal' })
+    | (BaseItem & { type: 'folder'; items?: ReactNode[] })
+    | (BaseItem & { type: 'file'; image?: string; content?: string; contentStyle?: 'italic' | 'normal'; showLabel?: boolean })
     | (BaseItem & { type: 'widget'; widget: () => ReactNode });
