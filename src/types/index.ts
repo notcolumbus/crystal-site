@@ -15,5 +15,4 @@ type BaseItem = {
 
 export type DraggableItem =
     | (BaseItem & { type: 'folder'; items?: ReactNode[] })
-    | (BaseItem & { type: 'file'; image?: string; content?: string; contentStyle?: 'italic' | 'normal'; showLabel?: boolean })
-    | (BaseItem & { type: 'widget'; widget: () => ReactNode });
+    | (BaseItem & { type: 'widget'; widget: ReactNode; showLabel?: boolean });

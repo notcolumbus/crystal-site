@@ -1,5 +1,5 @@
 import React from 'react';
-import type { DraggableItem } from '../../../types';
+import type { DraggableItem } from '../types';
 
 type FileItem = Extract<DraggableItem, { type: 'file' }>;
 
@@ -27,14 +27,14 @@ const parseContent = (text: string) => {
 export const FileNode: React.FC<{ item: FileItem }> = ({ item }) => {
     if (item.content) {
         return (
-            <div className={`relative w-fit max-w-[480px] bg-white rounded-lg shadow-sm border border-slate-200 p-4 text-2xl leading-relaxed font-serif text-slate-700 text-left pointer-events-none whitespace-pre-wrap ${item.contentStyle === 'italic' ? 'italic' : ''}`}>
+            <div className={`relative w-fit max-w-[480px] bg-white rounded-2xl shadow-sm border border-slate-200 p-4 text-2xl leading-relaxed font-serif text-slate-700 text-left pointer-events-none whitespace-pre-wrap ${item.contentStyle === 'italic' ? 'italic' : ''}`}>
                 {parseContent(item.content)}
             </div>
         );
     }
 
     return (
-        <div className="relative bg-white rounded shadow-sm border border-slate-200 overflow-hidden flex items-center justify-center pointer-events-none">
+        <div className="relative bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex items-center justify-center pointer-events-none">
             {item.image ? (
                 <img src={item.image} alt={item.name} className="max-w-[360px] max-h-[270px] object-contain select-none pointer-events-none" draggable={false} />
             ) : (

@@ -1,13 +1,8 @@
 import { useState, useEffect } from "react";
 import { MoonIcon, SunIcon } from "lucide-react";
 
-import {
-    Widget,
-    WidgetContent,
-    WidgetTitle,
-} from "@/components/ui/widget";
-import { Separator } from "@/components/ui/separator";
-import { Label } from "@/components/ui/label";
+import { Separator } from "./separator";
+import { Label } from "../label";
 
 function getTimeForTimezone(now: Date, tz: string) {
     const time = now.toLocaleTimeString("en-US", {
@@ -36,8 +31,8 @@ export default function ClockWidget() {
     const kl  = getTimeForTimezone(now, "Asia/Kuala_Lumpur");
 
     return (
-        <Widget className="w-[200px] aspect-square">
-            <WidgetContent className="flex-col h-full gap-0">
+        <div className="rounded-sm border border-slate-200 bg-white shadow w-[200px] aspect-square">
+            <div className="flex p-4 flex-col h-full gap-0">
                 <div className="flex flex-1 w-full flex-col justify-center gap-2">
                     <div className="flex w-full items-center justify-between">
                         <Label className="text-slate-500 text-xs font-normal font-serif">New York</Label>
@@ -47,7 +42,7 @@ export default function ClockWidget() {
                             <MoonIcon className="size-4 text-indigo-400" />
                         )}
                     </div>
-                    <WidgetTitle className="text-xl font-serif font-normal">{nyc.time}</WidgetTitle>
+                    <h3 className="font-semibold tracking-tight text-slate-900 text-xl font-serif font-normal">{nyc.time}</h3>
                 </div>
                 <Separator />
                 <div className="flex flex-1 w-full flex-col justify-center gap-2">
@@ -59,9 +54,9 @@ export default function ClockWidget() {
                             <MoonIcon className="size-4 text-indigo-400" />
                         )}
                     </div>
-                    <WidgetTitle className="text-xl font-serif font-normal">{kl.time}</WidgetTitle>
+                    <h3 className="font-semibold tracking-tight text-slate-900 text-xl font-serif font-normal">{kl.time}</h3>
                 </div>
-            </WidgetContent>
-        </Widget>
+            </div>
+        </div>
     );
 }

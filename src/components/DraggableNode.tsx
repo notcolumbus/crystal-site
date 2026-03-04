@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FileNode } from './nodes/FileNode';
-import { FolderNode } from './nodes/FolderNode';
-import { WidgetNode } from './nodes/WidgetNode';
-import type { DraggableItem } from '../../types';
+import { FolderNode } from './widgets/FolderNode';
+import { WidgetNode } from './WidgetNode';
+import type { DraggableItem } from '../types';
 
 interface DraggableNodeProps {
     item: DraggableItem;
@@ -14,14 +13,12 @@ const NodeContent: React.FC<{ item: DraggableItem }> = ({ item }) => {
     switch (item.type) {
         case 'widget': return <WidgetNode item={item} />;
         case 'folder': return <FolderNode item={item} />;
-        case 'file':   return <FileNode item={item} />;
     }
 };
 
 const hasLabel = (item: DraggableItem): boolean => {
-    if (item.type === 'widget') return false;
-    if (item.type === 'folder') return true;
-    return !item.content || !!item.showLabel;
+    if (item.type === 'widget') return !!item.showLabel;
+    return true;
 };
 
 export const DraggableNode: React.FC<DraggableNodeProps> = ({ item, constraintsRef }) => {

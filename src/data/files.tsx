@@ -1,5 +1,7 @@
 import type { DraggableItem } from '../types/index';
-import ClockWidget from '../components/ui/ClockWidget';
+import ClockWidget from '../components/widgets/ClockWidget';
+import MemoWidget from '../components/widgets/MemoWidget';
+import ImageWidget from '../components/widgets/ImageWidget';
 import crystalIcelandImg from '../assets/crystal_in_iceland.jpg';
 
 export const SECTIONS = [
@@ -9,10 +11,9 @@ export const SECTIONS = [
 ] as const;
 
 export const homeFiles: DraggableItem[] = [
-    { id: 'intro-text', name: 'memo', type: 'file', content: `Hi, I'm Crystal! I'm a Product Designer building* efficient, impactful *experiences with* intention.*\n\nPreviously @Xometry`, pos: { left: '10px', top: '62px' } },
-
-    { id: 'crystal-iceland', name: 'crystal_in_iceland.jpg', type: 'file', image: crystalIcelandImg, pos: { left: '380px', top: '235px' } },
-    { id: 'clock-widget', name: 'clock', type: 'widget', widget: () => <ClockWidget />, pos: { right: '10px', top: '62px' } },
+    { id: 'intro-text', name: 'memo', type: 'widget', widget: <MemoWidget content={`Hi, I'm Crystal! I'm a Product Designer building* efficient, impactful *experiences with* intention.*\n\nPreviously @Xometry`} />, pos: { left: '10px', top: '62px' } },
+    { id: 'crystal-iceland', name: 'crystal_in_iceland.jpg', type: 'widget', widget: <ImageWidget src={crystalIcelandImg} alt="Crystal in Iceland" />, showLabel: true, pos: { left: '380px', top: '235px' } },
+    { id: 'clock-widget', name: 'clock', type: 'widget', widget: <ClockWidget />, pos: { right: '10px', top: '62px' } },
 
     {
         id: 'applications-folder', name: 'applications', type: 'folder', pos: { left: '10px', bottom: '80px' },
@@ -31,7 +32,7 @@ export const homeFiles: DraggableItem[] = [
         ]
     },
 
-    { id: 'skills-text', name: 'skills', type: 'file', content: '01. UI/UX\n02. User Research\n03. Interaction Design\n04. Brand Design\n05. Photography', pos: { right: '10px', bottom: '80px' }, showLabel: true },
+  
 ];
 
 export const featuredFiles: DraggableItem[] = []

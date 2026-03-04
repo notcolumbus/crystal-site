@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { homeFiles, featuredFiles, expertiseFiles } from '../data/files';
-import { DraggableNode } from '../components/ui/DraggableNode';
+import { DraggableNode } from '../components/DraggableNode';
 import { useSection } from '../context/SectionContext';
 import type { DraggableItem } from '../types';
 import { ArrowDown } from 'lucide-react';

@@ -13,11 +13,11 @@ import {
     FileText,
     LayoutGrid
 } from 'lucide-react';
-import CcLogo from '../CcLogo';
-import { TypewriterTitles } from '../ui/TypewriterTitles';
+import { TypewriterTitles } from './TypewriterTitles';
 import { cn } from '@/lib/utils';
-import { useSection } from '../../context/SectionContext';
+import { useSection } from '../context/SectionContext';
 import { TextMorph } from 'torph/react';
+import CCLogo from "../assets/cc.svg";
 
 const SIDEBAR_ITEM = 'flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal transition-colors';
 
@@ -66,7 +66,7 @@ export const FinderLayout = () => {
                 {/* Sidebar */}
                 <aside className="w-[230px] h-full shrink-0 border-r border-[#E5E5E5] flex flex-col overflow-y-auto bg-[#F6F6F6] z-20">
                     <div className="pt-10 pb-8 px-4 flex flex-col items-center">
-                        <CcLogo width={160} height={100} className="mb-4" simple={true} />
+                       <img src={CCLogo} className='pb-3'/>
                         <TypewriterTitles />
                         <div className="text-[10px] text-[#999999] font-bold flex items-center gap-1 tracking-[0.1em] uppercase">📍Based in NYC</div>
                     </div>

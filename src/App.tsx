@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import { FinderLayout } from './components/layout/FinderLayout';
+import { FinderLayout } from './components/FinderLayout';
 import { SectionProvider } from './context/SectionContext';
 import { Home } from './pages/Home';
 import { Product } from './pages/Product';
