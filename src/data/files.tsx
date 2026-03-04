@@ -11,7 +11,7 @@ export const SECTIONS = [
 ] as const;
 
 export const homeFiles: DraggableItem[] = [
-    { id: 'intro-text', name: 'memo', type: 'widget', widget: <MemoWidget content={`Hi, I'm Crystal! I'm a Product Designer building* efficient, impactful *experiences with* intention.*\n\nPreviously @Xometry`} />, pos: { left: '10px', top: '62px' } },
+    { id: 'intro-text', name: 'memo', type: 'widget', widget: <MemoWidget content={`Hi, I'm Crystal — a Product Designer building\n*efficient, impactful *experiences\nwith *intention.*\n\nPreviously @Xometry`} />, pos: { left: '10px', top: '62px' } },
     { id: 'crystal-iceland', name: 'crystal_in_iceland.jpg', type: 'widget', widget: <ImageWidget src={crystalIcelandImg} alt="Crystal in Iceland" />, showLabel: true, pos: { left: '380px', top: '235px' } },
     { id: 'clock-widget', name: 'clock', type: 'widget', widget: <ClockWidget />, pos: { right: '10px', top: '62px' } },
 

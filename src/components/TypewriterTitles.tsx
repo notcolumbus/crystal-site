@@ -18,7 +18,14 @@ export const TypewriterTitles = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setTitleIndex((prev) => (prev + 1) % titles.length);
+            setTitleIndex((prev) => {
+                const next = prev + 1;
+                if (next >= titles.length) {
+                    clearInterval(interval);
+                    return 0;
+                }
+                return next;
+            });
         }, CYCLE_INTERVAL);
         return () => clearInterval(interval);
     }, []);

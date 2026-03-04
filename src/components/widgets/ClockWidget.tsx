@@ -31,11 +31,11 @@ export default function ClockWidget() {
     const kl  = getTimeForTimezone(now, "Asia/Kuala_Lumpur");
 
     return (
-        <div className="rounded-sm border border-slate-200 bg-white shadow w-[200px] aspect-square">
-            <div className="flex p-4 flex-col h-full gap-0">
+        <div className="rounded-sm border border-slate-200 bg-white shadow w-[200px] h-[180px]">
+            <div className="flex px-4 py-2 flex-col h-full gap-0">
                 <div className="flex flex-1 w-full flex-col justify-center gap-2">
                     <div className="flex w-full items-center justify-between">
-                        <Label className="text-slate-500 text-xs font-normal font-serif">New York</Label>
+                        <Label className="text-black text-xs font-normal font-serif">New York</Label>
                         {nyc.isDay ? (
                             <SunIcon className="size-4 text-amber-500" />
                         ) : (
@@ -44,10 +44,10 @@ export default function ClockWidget() {
                     </div>
                     <h3 className="font-semibold tracking-tight text-slate-900 text-xl font-serif font-normal">{nyc.time}</h3>
                 </div>
-                <Separator />
+                <Separator  />
                 <div className="flex flex-1 w-full flex-col justify-center gap-2">
                     <div className="flex w-full items-center justify-between">
-                        <Label className="text-slate-500 text-xs font-normal font-serif">Kuala Lumpur</Label>
+                        <Label className="text-black text-xs font-normal font-serif">Kuala Lumpur</Label>
                         {kl.isDay ? (
                             <SunIcon className="size-4 text-amber-500" />
                         ) : (
