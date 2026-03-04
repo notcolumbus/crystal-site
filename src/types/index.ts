@@ -13,6 +13,15 @@ type BaseItem = {
     pos: CSSPos;
 };
 
+export type FeaturedProject = {
+    id: string;
+    title: string;
+    description: string;
+    images: string[];
+    color: string;
+    titleColor: string;
+};
+
 export type DraggableItem =
     | (BaseItem & { type: 'folder'; items?: ReactNode[] })
     | (BaseItem & { type: 'widget'; widget: ReactNode; showLabel?: boolean });

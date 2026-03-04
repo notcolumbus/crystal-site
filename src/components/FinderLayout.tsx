@@ -111,13 +111,13 @@ export const FinderLayout = () => {
                         <div>
                             <div className="px-3 text-[11px] font-bold text-[#ADADAD] mb-2 uppercase tracking-wider">Locations</div>
                             <div className="flex flex-col gap-0.5">
-                                <a href="#" className={sidebarAnchorClass}>
+                                <a href="https://www.linkedin.com/in/cch0/" className={sidebarAnchorClass}>
                                     <Linkedin size={iconSize} className="text-[#0011FF]" /> Linkedin
                                 </a>
-                                <a href="#" className={sidebarAnchorClass}>
+                                <a href="mailto:crystalcho.official@gmail.com" className={sidebarAnchorClass}>
                                     <Mail size={iconSize} className="text-[#0011FF]" /> Email
                                 </a>
-                                <a href="#" className={sidebarAnchorClass}>
+                                <a href="https://drive.google.com/file/d/1W6JRUbUujetsAFSYz608EYB9ce5NvTph/view?usp=drive_link" className={sidebarAnchorClass}>
                                     <FileText size={iconSize} className="text-[#0011FF]" /> Resume
                                 </a>
                             </div>

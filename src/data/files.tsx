@@ -1,4 +1,4 @@
-import type { DraggableItem } from '../types/index';
+import type { DraggableItem, FeaturedProject } from '../types/index';
 import ClockWidget from '../components/widgets/ClockWidget';
 import MemoWidget from '../components/widgets/MemoWidget';
 import ImageWidget from '../components/widgets/ImageWidget';
@@ -35,5 +35,51 @@ export const homeFiles: DraggableItem[] = [
   
 ];
 
-export const featuredFiles: DraggableItem[] = []
+export const featuredProjects: FeaturedProject[] = [
+    {
+        id: 'project-1',
+        title: 'Project One',
+        description: 'A short description of what this project was about and the impact it had.',
+        images: [
+            'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
+            'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=800',
+        ],
+        color: '#FFF0E8',
+        titleColor: '#C2522B',
+    },
+    {
+        id: 'project-2',
+        title: 'Project Two',
+        description: 'A short description of what this project was about and the impact it had.',
+        images: [
+            'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=800',
+            'https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800',
+        ],
+        color: '#E8EFFF',
+        titleColor: '#3451B2',
+    },
+    {
+        id: 'project-3',
+        title: 'Project Three',
+        description: 'A short description of what this project was about and the impact it had.',
+        images: [
+            'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
+            'https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&w=800',
+        ],
+        color: '#F3E8FF',
+        titleColor: '#6D28D9',
+    },
+    {
+        id: 'project-4',
+        title: 'Project Four',
+        description: 'A short description of what this project was about and the impact it had.',
+        images: [
+            'https://images.pexels.com/photos/326503/pexels-photo-326503.jpeg?auto=compress&cs=tinysrgb&w=800',
+            'https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800',
+        ],
+        color: '#FEF9C3',
+        titleColor: '#92400E',
+    },
+];
+
 export const expertiseFiles: DraggableItem[] = [];
