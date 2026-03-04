@@ -15,6 +15,7 @@ export default {
 			fontFamily: {
 				sans: ['"Hanken Grotesk"', 'sans-serif'],
 				hanken: ['"Hanken Grotesk"', 'sans-serif'],
+				serif: ['"Source Serif 4"', 'serif'],
 			},
 			colors: {
 				background: 'hsl(var(--background))',

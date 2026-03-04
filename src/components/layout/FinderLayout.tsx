@@ -15,6 +15,10 @@ import {
 import CcLogo from '../CcLogo';
 import { TypewriterTitles } from '../ui/TypewriterTitles';
 import { useState, useCallback } from 'react';
+import { cn } from '@/lib/utils';
+import { SECTIONS } from '../../data/files';
+
+const SIDEBAR_ITEM = 'flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal transition-colors';
 
 export const FinderLayout = () => {
     const location = useLocation();
@@ -33,9 +37,6 @@ export const FinderLayout = () => {
         setActiveSection(section);
     }, []);
 
-    const sectionIds = ['crystal-cho', 'featured', 'expertise'];
-    const sectionNames = ['Crystal Cho', 'Featured', 'Expertise'];
-
     const scrollToSection = (sectionId: string) => {
         if (!isHome) {
             navigate('/');
@@ -49,9 +50,9 @@ export const FinderLayout = () => {
 
     const handlePrev = () => {
         if (isHome) {
-            const currentIndex = sectionNames.indexOf(activeSection);
+            const currentIndex = SECTIONS.findIndex(s => s.name === activeSection);
             if (currentIndex > 0) {
-                scrollToSection(sectionIds[currentIndex - 1]);
+                scrollToSection(SECTIONS[currentIndex - 1].id);
             }
         } else {
             navigate(-1);
@@ -60,9 +61,9 @@ export const FinderLayout = () => {
 
     const handleNext = () => {
         if (isHome) {
-            const currentIndex = sectionNames.indexOf(activeSection);
-            if (currentIndex < sectionIds.length - 1) {
-                scrollToSection(sectionIds[currentIndex + 1]);
+            const currentIndex = SECTIONS.findIndex(s => s.name === activeSection);
+            if (currentIndex < SECTIONS.length - 1) {
+                scrollToSection(SECTIONS[currentIndex + 1].id);
             }
         } else {
             navigate(1);
@@ -70,19 +71,14 @@ export const FinderLayout = () => {
     };
 
     const sidebarScrollClass = (sectionId: string) => {
-        const sectionNames: Record<string, string> = {
-            'crystal-cho': 'Crystal Cho',
-            'featured': 'Featured',
-            'expertise': 'Expertise',
-        };
-        const isActive = isHome && activeSection === sectionNames[sectionId];
-        return `flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal transition-colors cursor-pointer ${isActive ? 'bg-[#E5E5E5] text-black' : 'text-[#333333] hover:bg-black/5'
-            }`;
+        const isActive = isHome && activeSection === SECTIONS.find(s => s.id === sectionId)?.name;
+        return cn(SIDEBAR_ITEM, 'cursor-pointer', isActive ? 'bg-[#E5E5E5] text-black' : 'text-[#333333] hover:bg-black/5');
     };
 
     const sidebarLinkClass = ({ isActive }: { isActive: boolean }) =>
-        `flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal transition-colors ${isActive && !isHome ? 'bg-[#E5E5E5] text-black' : 'text-[#333333] hover:bg-black/5'
-        }`;
+        cn(SIDEBAR_ITEM, isActive && !isHome ? 'bg-[#E5E5E5] text-black' : 'text-[#333333] hover:bg-black/5');
+
+    const sidebarAnchorClass = cn(SIDEBAR_ITEM, 'text-[#333333] hover:bg-black/5');
 
     const iconSize = 16;
 
@@ -147,13 +143,13 @@ export const FinderLayout = () => {
                         <div>
                             <div className="px-3 text-[11px] font-bold text-[#ADADAD] mb-2 uppercase tracking-wider">Locations</div>
                             <div className="flex flex-col gap-0.5">
-                                <a href="#" className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal text-[#333333] hover:bg-black/5 transition-colors">
+                                <a href="#" className={sidebarAnchorClass}>
                                     <Linkedin size={iconSize} className="text-[#0011FF]" /> Linkedin
                                 </a>
-                                <a href="#" className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal text-[#333333] hover:bg-black/5 transition-colors">
+                                <a href="#" className={sidebarAnchorClass}>
                                     <Mail size={iconSize} className="text-[#0011FF]" /> Email
                                 </a>
-                                <a href="#" className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal text-[#333333] hover:bg-black/5 transition-colors">
+                                <a href="#" className={sidebarAnchorClass}>
                                     <FileText size={iconSize} className="text-[#0011FF]" /> Resume
                                 </a>
                             </div>

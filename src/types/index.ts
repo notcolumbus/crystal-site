@@ -1,12 +1,13 @@
 import type { ReactNode } from 'react';
 
-export interface DraggableItem {
+type BaseItem = {
     id: string;
     name: string;
-    type: 'folder' | 'file' | 'widget';
-    image?: string;
-    content?: string;
-    widget?: () => ReactNode;
     defaultX: number;
     defaultY: number;
-}
+};
+
+export type DraggableItem =
+    | (BaseItem & { type: 'folder' })
+    | (BaseItem & { type: 'file'; image?: string; content?: string; contentStyle?: 'italic' | 'normal' })
+    | (BaseItem & { type: 'widget'; widget: () => ReactNode });

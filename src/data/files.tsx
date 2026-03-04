@@ -1,12 +1,19 @@
-import React from 'react';
 import type { DraggableItem } from '../types/index';
 import ClockWidget from '../components/ui/ClockWidget';
 import crystalIcelandImg from '../assets/crystal_in_iceland.jpg';
 
+export const SECTIONS = [
+    { id: 'crystal-cho', name: 'Crystal Cho' },
+    { id: 'featured', name: 'Featured' },
+    { id: 'expertise', name: 'Expertise' },
+] as const;
+
 export const homeFiles: DraggableItem[] = [
-    { id: 'memo-text', name: 'memo', type: 'file', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', defaultX: 40, defaultY: 80 },
+    { id: 'memo-text', name: 'memo', type: 'file', content: `Hi, I'm Crystal! I'm a Product Designer building* efficient, impactful *experiences with* intention.*\n\nPreviously @Xometry`, defaultX: 40, defaultY: 80 },
     { id: 'crystal-iceland', name: 'crystal_in_iceland.jpg', type: 'file', image: crystalIcelandImg, defaultX: 500, defaultY: 200 },
-    { id: 'clock-widget', name: 'clock', type: 'widget', widget: () => React.createElement(ClockWidget), defaultX: 800, defaultY: 60 },
+    { id: 'clock-widget', name: 'clock', type: 'widget', widget: () => <ClockWidget />, defaultX: 800, defaultY: 60 },
+    { id: 'memo-text', name: 'memo', type: 'file', content: '01. UI/UX\n02. User Research\n03. Interaction Design\n04. Brand Design\n05. Photography', defaultX: 400, defaultY: 800 },
+
 ];
 
 export const featuredFiles: DraggableItem[] = [
@@ -28,4 +35,3 @@ export const expertiseFiles: DraggableItem[] = [
     { id: 'e-memo1', name: 'sample', type: 'file', image: 'https://placehold.co/120x80/e2e8f0/475569?text=Sample', defaultX: 600, defaultY: 300 },
     { id: 'e-memo2', name: 'sample', type: 'file', image: 'https://placehold.co/120x80/e2e8f0/475569?text=Sample', defaultX: 750, defaultY: 450 },
 ];
-
