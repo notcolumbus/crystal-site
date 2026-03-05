@@ -3,7 +3,7 @@ import type { FeaturedProject } from '../../types';
 
 const FeaturedCard = ({ project }: { project: FeaturedProject }) => {
     return (
-        <div className="relative rounded-2xl overflow-hidden h-full bg-[#f5f5f7] border border-black/[0.06]">
+        <div className="group relative rounded-2xl overflow-hidden h-full bg-[#f5f5f7] border border-black/[0.06]">
             {/* Subtle background tint */}
             <div className="absolute inset-0 overflow-hidden">
                 <img
@@ -13,43 +13,39 @@ const FeaturedCard = ({ project }: { project: FeaturedProject }) => {
                 />
             </div>
 
-            {/* Floating images — extend behind folder cover */}
+            {/* Floating images — fan out of folder on hover */}
             <div className="absolute inset-0 flex items-start justify-center pt-10" style={{ zIndex: 2 }}>
                 <div className="relative" style={{ width: '78%', height: '68%' }}>
                     {project.images.length > 1 && (
-                        <img
-                            src={project.images[0]}
-                            alt={project.title}
-                            className="absolute object-cover rounded-xl shadow-md"
-                            style={{
-                                width: '68%',
-                                height: '100%',
-                                left: '0%',
-                                top: '5%',
-                                transform: 'rotate(-5deg)',
-                                zIndex: 1,
-                            }}
-                        />
+                        <div
+                            className="absolute transition-all duration-500 ease-out group-hover:-translate-x-4 group-hover:-translate-y-6 group-hover:rotate-[-2deg]"
+                            style={{ width: '68%', height: '100%', left: '0%', top: '5%', zIndex: 1 }}
+                        >
+                            <img
+                                src={project.images[0]}
+                                alt={project.title}
+                                className="w-full h-full object-cover rounded-xl shadow-md transition-shadow duration-500 group-hover:shadow-xl"
+                                style={{ transform: 'rotate(-5deg)' }}
+                            />
+                        </div>
                     )}
-                    <img
-                        src={project.images[project.images.length > 1 ? 1 : 0]}
-                        alt={project.title}
-                        className="absolute object-cover rounded-xl shadow-xl"
-                        style={{
-                            width: '68%',
-                            height: '100%',
-                            right: '0%',
-                            top: '0%',
-                            transform: 'rotate(3deg)',
-                            zIndex: 2,
-                        }}
-                    />
+                    <div
+                        className="absolute transition-all duration-500 ease-out group-hover:translate-x-4 group-hover:-translate-y-8 group-hover:rotate-[2deg]"
+                        style={{ width: '68%', height: '100%', right: '0%', top: '0%', zIndex: 2 }}
+                    >
+                        <img
+                            src={project.images[project.images.length > 1 ? 1 : 0]}
+                            alt={project.title}
+                            className="w-full h-full object-cover rounded-xl shadow-xl transition-shadow duration-500 group-hover:shadow-2xl"
+                            style={{ transform: 'rotate(3deg)' }}
+                        />
+                    </div>
                 </div>
             </div>
 
             {/* Folder cover — glass/transparent effect */}
             <div className="absolute bottom-0 left-0 right-0" style={{ height: '40%', zIndex: 10 }}>
-                {/* Folder tab SVG — frosted glass */}
+                {/* Folder tab SVG */}
                 <svg
                     viewBox="0 0 800 48"
                     preserveAspectRatio="none"
@@ -58,14 +54,14 @@ const FeaturedCard = ({ project }: { project: FeaturedProject }) => {
                 >
                     <path
                         d="M0,48 L0,10 C0,4 4,0 10,0 L240,0 C260,0 268,8 278,24 C288,40 296,48 316,48 Z"
-                        fill="rgba(255,255,255,0.55)"
+                        fill="white"
                     />
                 </svg>
 
                 {/* Folder body — frosted glass */}
                 <div
-                    className="h-full px-5 pt-2 pb-4 flex flex-col justify-center backdrop-blur-xl border-t border-white/30"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.55)' }}
+                    className="h-full px-5 pt-2 pb-4 flex flex-col justify-center border-t border-black/5"
+                    style={{ backgroundColor: 'white' }}
                 >
                     <h3
                         className="text-xl font-bold leading-tight"
