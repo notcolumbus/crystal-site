@@ -54,8 +54,8 @@ export const Home = () => {
                 >
                     <SectionContent index={i} />
                     {i === 0 && (
-                        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-400 border rounded-full border-zinc-500/20 px-3 py-2 flex items-center justify-center gap-1">
-                            <ArrowDown size={15} className='animate-bounce'/>
+                        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-400 border rounded-full border-zinc-500/20 px-3 py-2 flex items-center justify-center gap-1 bg-white">
+                            <ArrowDown size={15} className='animate-bounce' />
                             <span className="text-[11px] font-bold uppercase tracking-widest">scroll to explore</span>
                         </div>
                     )}

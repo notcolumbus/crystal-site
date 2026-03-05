@@ -7,7 +7,7 @@ import {
     Zap,
     Hash,
     Compass,
-    User,
+
     Linkedin,
     Mail,
     FileText,
@@ -29,7 +29,7 @@ export const FinderLayout = () => {
     const { activeSectionName, scrollTo, prev, next, sections } = useSection();
     const [isCopied, setCopy] = useState("Email");
 
-    function handleCopy(){
+    function handleCopy() {
         navigator.clipboard.writeText("crystalcho.official@gmail.com");
         setCopy("Copied");
         setTimeout(() => setCopy("Email"), 1400);
@@ -75,7 +75,7 @@ export const FinderLayout = () => {
                 {/* Sidebar */}
                 <aside className="w-[230px] h-full shrink-0 border-r border-[#E5E5E5] flex flex-col overflow-y-auto bg-[#F6F6F6] z-20">
                     <div className="pt-10 pb-8 px-4 flex flex-col items-center">
-                       <img src={CCLogo} className='pb-3'/>
+                        <img src={CCLogo} className='pb-3' />
                         <TypewriterTitles />
                         <div className="text-[10px] text-[#999999] font-bold flex items-center gap-1 tracking-[0.1em] uppercase">📍Based in NYC</div>
                     </div>
@@ -90,8 +90,8 @@ export const FinderLayout = () => {
                                 <button onClick={() => handleScrollTo('featured')} className={sidebarScrollClass('featured')}>
                                     <LinkIcon size={iconSize} className="text-[#0011FF]" /> Featured
                                 </button>
-                                <button onClick={() => handleScrollTo('expertise')} className={sidebarScrollClass('expertise')}>
-                                    <Zap size={iconSize} className="text-[#0011FF]" /> Expertise
+                                <button onClick={() => handleScrollTo('about-me')} className={sidebarScrollClass('about-me')}>
+                                    <Zap size={iconSize} className="text-[#0011FF]" /> About Me
                                 </button>
                             </div>
                         </div>
@@ -108,14 +108,7 @@ export const FinderLayout = () => {
                             </div>
                         </div>
 
-                        <div>
-                            <div className="px-3 text-[11px] font-bold text-[#ADADAD] mb-2 uppercase tracking-wider">More</div>
-                            <div className="flex flex-col gap-0.5">
-                                <NavLink to="/about" className={sidebarLinkClass}>
-                                    <User size={iconSize} className="text-[#0011FF]" /> About
-                                </NavLink>
-                            </div>
-                        </div>
+
 
                         <div>
                             <div className="px-3 text-[11px] font-bold text-[#ADADAD] mb-2 uppercase tracking-wider">Locations</div>

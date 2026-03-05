@@ -7,7 +7,7 @@ import crystalIcelandImg from '../assets/crystal_in_iceland.jpg';
 export const SECTIONS = [
     { id: 'crystal-cho', name: 'Crystal Cho' },
     { id: 'featured', name: 'Featured' },
-    { id: 'expertise', name: 'Expertise' },
+    { id: 'about-me', name: 'About Me' },
 ] as const;
 
 export const homeFiles: DraggableItem[] = [
@@ -24,7 +24,7 @@ export const homeFiles: DraggableItem[] = [
         ]
     },
     {
-        id: 'peripherals-folder', name: 'peripherals', type: 'folder', pos: { left: '195px', bottom: '80px' },
+        id: 'gadgets-folder', name: 'gadgets', type: 'folder', pos: { left: '195px', bottom: '80px' },
         items: [
             <img src="https://placehold.co/200x150/e2e8f0/475569?text=apple_enjoyer.jpg" alt="apple_enjoyer" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />,
             <img src="https://placehold.co/200x150/e2e8f0/475569?text=engi_keeb.jpg" alt="engi_keb" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />,
@@ -32,7 +32,7 @@ export const homeFiles: DraggableItem[] = [
         ]
     },
 
-  
+
 ];
 
 export const featuredProjects: FeaturedProject[] = [
