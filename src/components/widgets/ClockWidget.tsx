@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { MoonIcon, SunIcon } from "lucide-react";
 
-import { Separator } from "./separator";
-import { Label } from "../label";
+import { Separator } from "../ui/Separator";
+import { Label } from "../ui/Label";
 
 function getTimeForTimezone(now: Date, tz: string) {
     const time = now.toLocaleTimeString("en-US", {
@@ -18,7 +18,7 @@ function getTimeForTimezone(now: Date, tz: string) {
     return { time, isDay: h >= 6 && h < 20 };
 }
 
-export default function ClockWidget() {
+export function ClockWidget() {
     const [, setTick] = useState(0);
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export default function ClockWidget() {
 
     const now = new Date();
     const nyc = getTimeForTimezone(now, "America/New_York");
-    const kl  = getTimeForTimezone(now, "Asia/Kuala_Lumpur");
+    const kl = getTimeForTimezone(now, "Asia/Kuala_Lumpur");
 
     return (
         <div className="rounded-sm border border-slate-200 bg-white shadow w-[200px] h-[180px]">
@@ -44,7 +44,7 @@ export default function ClockWidget() {
                     </div>
                     <h3 className="font-semibold tracking-tight text-slate-900 text-xl font-serif font-normal">{nyc.time}</h3>
                 </div>
-                <Separator  />
+                <Separator />
                 <div className="flex flex-1 w-full flex-col justify-center gap-2">
                     <div className="flex w-full items-center justify-between">
                         <Label className="text-black text-xs font-normal font-serif">Kuala Lumpur</Label>

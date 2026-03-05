@@ -1,7 +1,7 @@
 import type { DraggableItem, FeaturedProject } from '../types/index';
-import ClockWidget from '../components/widgets/ClockWidget';
-import MemoWidget from '../components/widgets/MemoWidget';
-import ImageWidget from '../components/widgets/ImageWidget';
+import { ClockWidget } from '../components/widgets/ClockWidget';
+import { MemoWidget } from '../components/widgets/MemoWidget';
+import { ImageWidget } from '../components/widgets/ImageWidget';
 import crystalIcelandImg from '../assets/crystal_in_iceland.jpg';
 
 export const SECTIONS = [
@@ -81,5 +81,3 @@ export const featuredProjects: FeaturedProject[] = [
         titleColor: '#92400E',
     },
 ];
-
-export const expertiseFiles: DraggableItem[] = [];

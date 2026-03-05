@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FolderNode } from './widgets/FolderNode';
+import { FolderNode } from './FolderNode';
 import { WidgetNode } from './WidgetNode';
-import type { DraggableItem } from '../types';
+import type { DraggableItem } from '../../types';
 
 interface DraggableNodeProps {
     item: DraggableItem;

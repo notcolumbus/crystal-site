@@ -15,9 +15,9 @@ import {
 } from 'lucide-react';
 import { TypewriterTitles } from './TypewriterTitles';
 import { cn } from '@/lib/utils';
-import { useSection } from '../context/SectionContext';
+import { useSection } from '../../context/SectionContext';
 import { TextMorph } from 'torph/react';
-import CCLogo from "../assets/cc.svg";
+import CCLogo from "../../assets/cc.svg";
 import { useState } from 'react';
 
 

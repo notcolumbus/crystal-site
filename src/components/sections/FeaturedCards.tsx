@@ -1,5 +1,5 @@
-import { featuredProjects } from '../data/files';
-import type { FeaturedProject } from '../types';
+import { featuredProjects } from '../../data/files';
+import type { FeaturedProject } from '../../types';
 
 const FeaturedCard = ({ project }: { project: FeaturedProject }) => {
     return (

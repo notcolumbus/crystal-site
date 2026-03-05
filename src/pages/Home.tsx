@@ -1,8 +1,8 @@
 import { useRef, useEffect } from 'react';
 import { homeFiles } from '../data/files';
-import { DraggableNode } from '../components/DraggableNode';
-import { FeaturedCards } from '../components/FeaturedCards';
-import { ExpertiseCards } from '../components/ExpertiseCards';
+import { DraggableNode } from '../components/desktop/DraggableNode';
+import { FeaturedCards } from '../components/sections/FeaturedCards';
+import { AboutMeSection } from '../components/sections/AboutMeSection';
 import { useSection } from '../context/SectionContext';
 import { ArrowDown } from 'lucide-react';
 
@@ -25,7 +25,7 @@ const HomeSection = () => {
 
 const SectionContent = ({ index }: { index: number }) => {
     if (index === 1) return <FeaturedCards />;
-    if (index === 2) return <ExpertiseCards />;
+    if (index === 2) return <AboutMeSection />;
     return <HomeSection />;
 };
 

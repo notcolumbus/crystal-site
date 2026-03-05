@@ -16,7 +16,7 @@ const parseContent = (text: string) => {
     return parts.length > 0 ? parts : text;
 };
 
-export default function MemoWidget({ content }: { content: string }) {
+export function MemoWidget({ content }: { content: string }) {
     return (
         <div className="relative w-fit max-w-[560px] bg-white rounded-sm shadow border border-slate-200 p-4 text-2xl leading-relaxed font-serif text-black text-left pointer-events-none whitespace-pre-wrap">
             {parseContent(content)}

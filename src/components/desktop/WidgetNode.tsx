@@ -1,5 +1,5 @@
 import React from 'react';
-import type { DraggableItem } from '../types';
+import type { DraggableItem } from '../../types';
 
 type WidgetItem = Extract<DraggableItem, { type: 'widget' }>;
 

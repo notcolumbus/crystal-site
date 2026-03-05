@@ -96,9 +96,9 @@ const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, items = []
               style={
                 open
                   ? ({
-                      '--magnet-x': `${paperOffsets[i]?.x || 0}px`,
-                      '--magnet-y': `${paperOffsets[i]?.y || 0}px`
-                    } as React.CSSProperties)
+                    '--magnet-x': `${paperOffsets[i]?.x || 0}px`,
+                    '--magnet-y': `${paperOffsets[i]?.y || 0}px`
+                  } as React.CSSProperties)
                   : {}
               }
             >
@@ -113,4 +113,4 @@ const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, items = []
   );
 };
 
-export default Folder;
+export { Folder };
