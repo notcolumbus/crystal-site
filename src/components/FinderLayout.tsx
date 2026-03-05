@@ -18,6 +18,8 @@ import { cn } from '@/lib/utils';
 import { useSection } from '../context/SectionContext';
 import { TextMorph } from 'torph/react';
 import CCLogo from "../assets/cc.svg";
+import { useState } from 'react';
+
 
 const SIDEBAR_ITEM = 'flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal transition-colors';
 
@@ -25,6 +27,13 @@ export const FinderLayout = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { activeSectionName, scrollTo, prev, next, sections } = useSection();
+    const [isCopied, setCopy] = useState("Email");
+
+    function handleCopy(){
+        navigator.clipboard.writeText("crystalcho.official@gmail.com");
+        setCopy("Copied");
+        setTimeout(() => setCopy("Email"), 1400);
+    }
 
     const isHome = location.pathname === '/';
 
@@ -114,9 +123,9 @@ export const FinderLayout = () => {
                                 <a href="https://www.linkedin.com/in/cch0/" className={sidebarAnchorClass}>
                                     <Linkedin size={iconSize} className="text-[#0011FF]" /> Linkedin
                                 </a>
-                                <a href="mailto:crystalcho.official@gmail.com" className={sidebarAnchorClass}>
-                                    <Mail size={iconSize} className="text-[#0011FF]" /> Email
-                                </a>
+                                <div className={sidebarAnchorClass} onClick={handleCopy}>
+                                    <Mail size={iconSize} className="text-[#0011FF]" /> <TextMorph>{isCopied}</TextMorph>
+                                </div>
                                 <a href="https://drive.google.com/file/d/1W6JRUbUujetsAFSYz608EYB9ce5NvTph/view?usp=drive_link" className={sidebarAnchorClass}>
                                     <FileText size={iconSize} className="text-[#0011FF]" /> Resume
                                 </a>

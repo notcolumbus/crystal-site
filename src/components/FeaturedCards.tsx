@@ -1,41 +1,107 @@
 import { featuredProjects } from '../data/files';
 import type { FeaturedProject } from '../types';
 
-const FeaturedCard = ({ project, index }: { project: FeaturedProject; index: number }) => (
-    <div className="relative rounded-2xl overflow-hidden h-full" style={{ backgroundColor: project.color }}>
-        {/* Stacked floating images */}
-        <div className="absolute inset-x-0 top-4 bottom-0 flex items-center justify-center">
-            <div className="relative w-[78%] h-full">
+const FeaturedCard = ({ project }: { project: FeaturedProject }) => {
+    const folderColor = project.color;
+
+    return (
+        <div className="relative rounded-2xl overflow-hidden h-full bg-[#f5f5f7] border border-black/[0.06]">
+
+
+            {/* Subtle background tint */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div
+                    className="absolute inset-0 opacity-[0.06]"
+                    style={{ backgroundColor: project.titleColor }}
+                />
                 <img
                     src={project.images[0]}
-                    alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-lg"
-                    style={{ transform: 'rotate(-3deg) translateY(6px)', zIndex: 1 }}
-                />
-                <img
-                    src={project.images[1]}
-                    alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-xl"
-                    style={{ transform: 'rotate(2deg)', zIndex: 2 }}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-10"
                 />
             </div>
-        </div>
 
-        {/* Text overlay at bottom, above images */}
-        <div className="absolute inset-x-3 bottom-3 rounded-xl backdrop-blur-md bg-white/50 border border-white/60 p-4" style={{ zIndex: 3 }}>
-            <span className="text-[11px] uppercase tracking-widest font-medium" style={{ color: project.titleColor + '99' }}>Project {index + 1}</span>
-            <h3 className="text-base font-bold mt-0.5" style={{ color: project.titleColor }}>{project.title}</h3>
-            <div className="h-px my-2" style={{ backgroundColor: project.titleColor + '20' }} />
-            <p className="text-xs leading-relaxed" style={{ color: project.titleColor + 'cc' }}>{project.description}</p>
+            {/* Floating images — extend behind folder cover */}
+            <div className="absolute inset-0 flex items-start justify-center pt-8" style={{ zIndex: 2 }}>
+                <div className="relative" style={{ width: '80%', height: '70%' }}>
+                    {project.images.length > 1 && (
+                        <img
+                            src={project.images[0]}
+                            alt={project.title}
+                            className="absolute object-cover rounded-xl shadow-md"
+                            style={{
+                                width: '70%',
+                                height: '100%',
+                                left: '0%',
+                                top: '5%',
+                                transform: 'rotate(-5deg)',
+                                zIndex: 1,
+                            }}
+                        />
+                    )}
+                    <img
+                        src={project.images[project.images.length > 1 ? 1 : 0]}
+                        alt={project.title}
+                        className="absolute object-cover rounded-xl shadow-xl"
+                        style={{
+                            width: '70%',
+                            height: '100%',
+                            right: '0%',
+                            top: '0%',
+                            transform: 'rotate(3deg)',
+                            zIndex: 2,
+                        }}
+                    />
+                </div>
+            </div>
+
+            {/* Folder cover — solid opaque */}
+            <div className="absolute bottom-0 left-0 right-0" style={{ height: '42%', zIndex: 10 }}>
+                {/* Folder tab SVG */}
+                <svg
+                    viewBox="0 0 800 48"
+                    preserveAspectRatio="none"
+                    className="absolute -top-[23px] left-0 w-full h-[24px]"
+                    style={{ zIndex: 10 }}
+                >
+                    <path
+                        d="M0,48 L0,10 C0,4 4,0 10,0 L240,0 C260,0 268,8 278,24 C288,40 296,48 316,48 Z"
+                        fill={folderColor}
+                    />
+                </svg>
+
+                {/* Folder body */}
+                <div
+                    className="h-full px-5 pt-2 pb-4 flex flex-col justify-center"
+                    style={{ backgroundColor: folderColor }}
+                >
+                    <h3
+                        className="text-xl font-bold leading-tight"
+                        style={{ color: project.titleColor }}
+                    >
+                        {project.title}
+                    </h3>
+                    <div
+                        className="h-px my-2"
+                        style={{ backgroundColor: project.titleColor + '25' }}
+                    />
+                    <p
+                        className="text-[13px] leading-relaxed font-medium"
+                        style={{ color: project.titleColor + 'cc' }}
+                    >
+                        {project.description}
+                    </p>
+                </div>
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 export const FeaturedCards = () => (
     <div className="absolute inset-0 w-full h-full pt-[52px]">
         <div className="grid grid-cols-2 grid-rows-2 gap-4 p-5 h-full">
-            {featuredProjects.map((project, i) => (
-                <FeaturedCard key={project.id} project={project} index={i} />
+            {featuredProjects.map((project) => (
+                <FeaturedCard key={project.id} project={project} />
             ))}
         </div>
     </div>
