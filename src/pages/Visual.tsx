@@ -39,7 +39,7 @@ const items = [
 ];
 export const Visual = () => {
   return (
-    <div className="p-8 h-full overflow-y-auto w-full">
+    <div className="p-8 pt-[68px] h-full overflow-y-auto w-full">
 
       <Masonry
         items={items}
