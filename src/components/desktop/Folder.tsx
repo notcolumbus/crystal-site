@@ -46,7 +46,7 @@ const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, expandScal
   const papers = items.slice(0, 6);
 
   const [open, setOpen] = useState(false);
-  const [paperOffsets, setPaperOffsets] = useState<{ x: number; y: number }[]>(
+  const [_paperOffsets, setPaperOffsets] = useState<{ x: number; y: number }[]>(
     Array.from({ length: papers.length }, () => ({ x: 0, y: 0 }))
   );
 
