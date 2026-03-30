@@ -26,16 +26,27 @@ const darkenColor = (hex: string, percent: number): string => {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
 };
 
+const getCircularPosition = (index: number, total: number, radius: number) => {
+  // Spread items in a semicircle above the folder (from 210° to 330°, with top at 270°)
+  const startAngle = 210;
+  const endAngle = 330;
+  const angle = total === 1
+    ? 270
+    : startAngle + (index / (total - 1)) * (endAngle - startAngle);
+  const rad = (angle * Math.PI) / 180;
+  const x = Math.cos(rad) * radius;
+  const y = Math.sin(rad) * radius;
+  // Rotation: items tilt outward from center, 0° at top (270°)
+  const rotation = (angle - 270) * 0.4;
+  return { x, y, rotation };
+};
+
 const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, items = [], className = '' }) => {
-  const maxItems = 3;
-  const papers = items.slice(0, maxItems);
-  while (papers.length < maxItems) {
-    papers.push(null);
-  }
+  const papers = items.slice(0, 6);
 
   const [open, setOpen] = useState(false);
   const [paperOffsets, setPaperOffsets] = useState<{ x: number; y: number }[]>(
-    Array.from({ length: maxItems }, () => ({ x: 0, y: 0 }))
+    Array.from({ length: papers.length }, () => ({ x: 0, y: 0 }))
   );
 
   const folderBackColor = darkenColor(color, 0.08);
@@ -46,7 +57,7 @@ const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, items = []
   const handleClick = () => {
     setOpen(prev => !prev);
     if (open) {
-      setPaperOffsets(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })));
+      setPaperOffsets(Array.from({ length: papers.length }, () => ({ x: 0, y: 0 })));
     }
   };
 
@@ -87,24 +98,26 @@ const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, items = []
     <div style={scaleStyle} className={className}>
       <div className={folderClassName} style={folderStyle} onClick={handleClick}>
         <div className="folder__back">
-          {papers.map((item, i) => (
-            <div
-              key={i}
-              className={`paper paper-${i + 1}`}
-              onMouseMove={e => handlePaperMouseMove(e, i)}
-              onMouseLeave={e => handlePaperMouseLeave(e, i)}
-              style={
-                open
-                  ? ({
-                    '--magnet-x': `${paperOffsets[i]?.x || 0}px`,
-                    '--magnet-y': `${paperOffsets[i]?.y || 0}px`
-                  } as React.CSSProperties)
-                  : {}
-              }
-            >
-              {item}
-            </div>
-          ))}
+          {papers.map((item, i) => {
+            const pos = getCircularPosition(i, papers.length, 120);
+            const openStyle: React.CSSProperties = open
+              ? {
+                  transform: `translate(calc(-50% + ${pos.x}px), calc(10% + ${pos.y}px)) rotate(${pos.rotation}deg) scale(1.6)`,
+                  zIndex: 10 + i,
+                }
+              : {};
+            return (
+              <div
+                key={i}
+                className="paper"
+                onMouseMove={e => handlePaperMouseMove(e, i)}
+                onMouseLeave={e => handlePaperMouseLeave(e, i)}
+                style={openStyle}
+              >
+                {item}
+              </div>
+            );
+          })}
           <div className="folder__front"></div>
           <div className="folder__front right"></div>
         </div>

@@ -18,17 +18,17 @@ export const homeFiles: DraggableItem[] = [
     {
         id: 'applications-folder', name: 'applications', type: 'folder', pos: { left: '10px', bottom: '80px' },
         items: [
-            <img src="https://placehold.co/80x80/5865F2/white?text=Discord" alt="Discord" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />,
-            <img src="https://placehold.co/80x80/1E1E1E/white?text=Figma" alt="Figma" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />,
-            <img src="https://placehold.co/80x80/FF0000/white?text=CC" alt="Creative Cloud" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />,
+            <img src="https://ik.imagekit.io/cch0/applications/Figma-logo.svg?updatedAt=1772659997879" alt="Figma" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 6 }} />,
+            <img src="https://ik.imagekit.io/cch0/applications/Adobe_Creative_Cloud_rainbow_icon.svg.png?updatedAt=1772660005522" alt="Adobe Creative Cloud" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 6 }} />,
+            <img src="https://ik.imagekit.io/cch0/applications/notion.png?updatedAt=1772660125350" alt="Notion" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: 6 }} />,
         ]
     },
     {
         id: 'gadgets-folder', name: 'gadgets', type: 'folder', pos: { left: '195px', bottom: '80px' },
         items: [
-            <img src="https://placehold.co/200x150/e2e8f0/475569?text=apple_enjoyer.jpg" alt="apple_enjoyer" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />,
-            <img src="https://placehold.co/200x150/e2e8f0/475569?text=engi_keeb.jpg" alt="engi_keb" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />,
-            <img src="https://placehold.co/130x160/e2e8f0/475569?text=headphones.jpg" alt="headphones" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />,
+            <img src="https://ik.imagekit.io/cch0/images/headphones.png" alt="headphones" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />,
+            <img src="https://ik.imagekit.io/cch0/images/keyboard.png" alt="keyboard" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />,
+            <img src="https://ik.imagekit.io/cch0/images/kindle.png" alt="kindle" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: 6 }} />,
         ]
     },
 

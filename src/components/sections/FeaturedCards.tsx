@@ -3,15 +3,7 @@ import type { FeaturedProject } from '../../types';
 
 const FeaturedCard = ({ project }: { project: FeaturedProject }) => {
     return (
-        <div className="group relative rounded-2xl overflow-hidden h-full bg-[#f5f5f7] border border-black/[0.06]">
-            {/* Subtle background tint */}
-            <div className="absolute inset-0 overflow-hidden">
-                <img
-                    src={project.images[0]}
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-cover scale-125 blur-2xl opacity-[0.12]"
-                />
-            </div>
+        <div className="group relative rounded-2xl overflow-hidden h-full bg-[#F6F6F6] border border-black/[0.06]">
 
             {/* Floating images — fan out of folder on hover */}
             <div className="absolute inset-0 flex items-start justify-center pt-10" style={{ zIndex: 2 }}>
@@ -63,20 +55,11 @@ const FeaturedCard = ({ project }: { project: FeaturedProject }) => {
                     className="h-full px-5 pt-2 pb-4 flex flex-col justify-center border-t border-black/5"
                     style={{ backgroundColor: 'white' }}
                 >
-                    <h3
-                        className="text-xl font-bold leading-tight"
-                        style={{ color: project.titleColor }}
-                    >
+                    <h3 className="text-xl font-bold leading-tight text-black">
                         {project.title}
                     </h3>
-                    <div
-                        className="h-px my-2"
-                        style={{ backgroundColor: project.titleColor + '20' }}
-                    />
-                    <p
-                        className="text-[13px] leading-relaxed font-medium"
-                        style={{ color: project.titleColor + 'bb' }}
-                    >
+                    <div className="h-px my-2 bg-black/10" />
+                    <p className="text-[13px] leading-relaxed font-medium text-black">
                         {project.description}
                     </p>
                 </div>

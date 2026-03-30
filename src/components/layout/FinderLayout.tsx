@@ -17,7 +17,7 @@ import { TypewriterTitles } from './TypewriterTitles';
 import { cn } from '@/lib/utils';
 import { useSection } from '../../context/SectionContext';
 import { TextMorph } from 'torph/react';
-import CCLogo from "../../assets/cc.svg";
+import CCLogo from "../../assets/cc.png";
 import { useState } from 'react';
 
 
@@ -75,7 +75,7 @@ export const FinderLayout = () => {
                 {/* Sidebar */}
                 <aside className="w-[230px] h-full shrink-0 border-r border-[#E5E5E5] flex flex-col overflow-y-auto bg-[#F6F6F6] z-20">
                     <div className="pt-10 pb-8 px-4 flex flex-col items-center">
-                        <img src={CCLogo} className='pb-3' />
+                        <img src={CCLogo} className='pb-3' style={{ transform: 'scale(0.8)', transformOrigin: 'center' }} />
                         <TypewriterTitles />
                         <div className="text-[10px] text-[#999999] font-bold flex items-center gap-1 tracking-[0.1em] uppercase">📍Based in NYC</div>
                     </div>
