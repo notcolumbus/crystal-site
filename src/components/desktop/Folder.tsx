@@ -4,6 +4,7 @@ import './Folder.css';
 interface FolderProps {
   color?: string;
   size?: number;
+  expandScale?: number;
   items?: React.ReactNode[];
   className?: string;
 }
@@ -41,7 +42,7 @@ const getCircularPosition = (index: number, total: number, radius: number) => {
   return { x, y, rotation };
 };
 
-const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, items = [], className = '' }) => {
+const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, expandScale = 1.6, items = [], className = '' }) => {
   const papers = items.slice(0, 6);
 
   const [open, setOpen] = useState(false);
@@ -99,10 +100,10 @@ const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, items = []
       <div className={folderClassName} style={folderStyle} onClick={handleClick}>
         <div className="folder__back">
           {papers.map((item, i) => {
-            const pos = getCircularPosition(i, papers.length, 120);
+            const pos = getCircularPosition(i, papers.length, 76);
             const openStyle: React.CSSProperties = open
               ? {
-                  transform: `translate(calc(-50% + ${pos.x}px), calc(10% + ${pos.y}px)) rotate(${pos.rotation}deg) scale(1.6)`,
+                  transform: `translate(calc(-50% + ${pos.x}px), calc(10% + ${pos.y}px)) rotate(${pos.rotation}deg) scale(${expandScale})`,
                   zIndex: 10 + i,
                 }
               : {};

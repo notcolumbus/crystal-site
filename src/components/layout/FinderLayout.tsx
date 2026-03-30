@@ -90,9 +90,6 @@ export const FinderLayout = () => {
                                 <button onClick={() => handleScrollTo('featured')} className={sidebarScrollClass('featured')}>
                                     <LinkIcon size={iconSize} className="text-[#0011FF]" /> Featured
                                 </button>
-                                <button onClick={() => handleScrollTo('about-me')} className={sidebarScrollClass('about-me')}>
-                                    <Zap size={iconSize} className="text-[#0011FF]" /> About Me
-                                </button>
                             </div>
                         </div>
 
@@ -105,6 +102,9 @@ export const FinderLayout = () => {
                                 <NavLink to="/visual" className={sidebarLinkClass}>
                                     <Compass size={iconSize} className="text-[#0011FF]" /> Visual
                                 </NavLink>
+                                <button onClick={() => handleScrollTo('about-me')} className={sidebarScrollClass('about-me')}>
+                                    <Zap size={iconSize} className="text-[#0011FF]" /> More
+                                </button>
                             </div>
                         </div>
 
