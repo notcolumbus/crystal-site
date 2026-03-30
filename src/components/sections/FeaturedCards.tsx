@@ -55,7 +55,7 @@ const FeaturedCard = ({ project }: { project: FeaturedProject }) => {
                     className="h-full px-5 pt-2 pb-4 flex flex-col justify-center border-t border-black/5"
                     style={{ backgroundColor: 'white' }}
                 >
-                    <h3 className="text-xl font-bold leading-tight text-black">
+                    <h3 className="font-heading text-xl font-bold leading-tight text-black">
                         {project.title}
                     </h3>
                     <div className="h-px my-2 bg-black/10" />
@@ -69,8 +69,8 @@ const FeaturedCard = ({ project }: { project: FeaturedProject }) => {
 };
 
 export const FeaturedCards = () => (
-    <div className="absolute inset-0 w-full h-full pt-[52px]">
-        <div className="grid grid-cols-2 grid-rows-2 gap-6 p-8 h-full">
+    <div className="absolute inset-0 w-full h-full pt-[52px]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0)', backgroundSize: '24px 24px', backgroundColor: 'white' }}>
+        <div className="grid grid-cols-2 grid-rows-2 gap-10 p-16 h-full">
             {featuredProjects.map((project) => (
                 <FeaturedCard key={project.id} project={project} />
             ))}

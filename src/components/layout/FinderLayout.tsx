@@ -21,7 +21,7 @@ import CCLogo from "../../assets/cc.png";
 import { useState } from 'react';
 
 
-const SIDEBAR_ITEM = 'flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal transition-colors';
+const SIDEBAR_ITEM = 'flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal font-hanken transition-colors';
 
 export const FinderLayout = () => {
     const location = useLocation();
@@ -77,12 +77,12 @@ export const FinderLayout = () => {
                     <div className="pt-10 pb-8 px-4 flex flex-col items-center">
                         <img src={CCLogo} className='pb-3' style={{ transform: 'scale(0.8)', transformOrigin: 'center' }} />
                         <TypewriterTitles />
-                        <div className="text-[10px] text-[#999999] font-bold flex items-center gap-1 tracking-[0.1em] uppercase">📍Based in NYC</div>
+                        <div className="text-[10px] font-heading font-medium text-black/70 flex items-center gap-1 tracking-[0.1em] uppercase">📍Based in NYC</div>
                     </div>
 
                     <nav className="flex flex-col px-3 pb-8 gap-8">
                         <div>
-                            <div className="px-3 text-[11px] font-bold text-[#ADADAD] mb-2 uppercase tracking-wider">Favorites</div>
+                            <div className="px-3 text-[11px] font-heading font-medium text-black/40 mb-2 uppercase tracking-wider">Favorites</div>
                             <div className="flex flex-col gap-0.5">
                                 <button onClick={() => handleScrollTo('crystal-cho')} className={sidebarScrollClass('crystal-cho')}>
                                     <Sparkles size={iconSize} className="text-[#0011FF]" /> Crystal Cho
@@ -97,7 +97,7 @@ export const FinderLayout = () => {
                         </div>
 
                         <div>
-                            <div className="px-3 text-[11px] font-bold text-[#ADADAD] mb-2 uppercase tracking-wider">Work</div>
+                            <div className="px-3 text-[11px] font-heading font-medium text-black/40 mb-2 uppercase tracking-wider">Work</div>
                             <div className="flex flex-col gap-0.5">
                                 <NavLink to="/product" className={sidebarLinkClass}>
                                     <Hash size={iconSize} className="text-[#0011FF]" /> Product
@@ -111,7 +111,7 @@ export const FinderLayout = () => {
 
 
                         <div>
-                            <div className="px-3 text-[11px] font-bold text-[#ADADAD] mb-2 uppercase tracking-wider">Locations</div>
+                            <div className="px-3 text-[11px] font-heading font-medium text-black/40 mb-2 uppercase tracking-wider">Locations</div>
                             <div className="flex flex-col gap-0.5">
                                 <a href="https://www.linkedin.com/in/cch0/" className={sidebarAnchorClass}>
                                     <Linkedin size={iconSize} className="text-[#0011FF]" /> Linkedin
@@ -139,7 +139,7 @@ export const FinderLayout = () => {
                                     <ChevronRight size={20} />
                                 </button>
                             </div>
-                            <span className="font-bold text-[19px] text-black tracking-tight"><TextMorph>{getTitle()}</TextMorph></span>
+                            <span className="font-heading font-normal text-[19px] text-black tracking-[0.02em]"><TextMorph>{getTitle()}</TextMorph></span>
                         </div>
 
                         <div className="absolute right-4">
