@@ -22,6 +22,7 @@ import { useState } from 'react';
 
 
 const SIDEBAR_ITEM = 'flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-[13px] font-normal font-hanken transition-colors';
+const SIDEBAR_HEADING = 'px-3 text-[11px] font-heading font-medium text-black/40 mb-2 uppercase tracking-wider';
 
 export const FinderLayout = () => {
     const location = useLocation();
@@ -82,7 +83,7 @@ export const FinderLayout = () => {
 
                     <nav className="flex flex-col px-3 pb-8 gap-8">
                         <div>
-                            <div className="px-3 text-[11px] font-heading font-medium text-black/40 mb-2 uppercase tracking-wider">Favorites</div>
+                            <div className={SIDEBAR_HEADING}>Favorites</div>
                             <div className="flex flex-col gap-0.5">
                                 <button onClick={() => handleScrollTo('crystal-cho')} className={sidebarScrollClass('crystal-cho')}>
                                     <Sparkles size={iconSize} className="text-[#0011FF]" /> Crystal Cho
@@ -94,7 +95,7 @@ export const FinderLayout = () => {
                         </div>
 
                         <div>
-                            <div className="px-3 text-[11px] font-heading font-medium text-black/40 mb-2 uppercase tracking-wider">Work</div>
+                            <div className={SIDEBAR_HEADING}>Work</div>
                             <div className="flex flex-col gap-0.5">
                                 <NavLink to="/product" className={sidebarLinkClass}>
                                     <Hash size={iconSize} className="text-[#0011FF]" /> Product
@@ -102,16 +103,20 @@ export const FinderLayout = () => {
                                 <NavLink to="/visual" className={sidebarLinkClass}>
                                     <Compass size={iconSize} className="text-[#0011FF]" /> Visual
                                 </NavLink>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className={SIDEBAR_HEADING}>More</div>
+                            <div className="flex flex-col gap-0.5">
                                 <button onClick={() => handleScrollTo('about-me')} className={sidebarScrollClass('about-me')}>
-                                    <Zap size={iconSize} className="text-[#0011FF]" /> More
+                                    <Zap size={iconSize} className="text-[#0011FF]" /> About Me
                                 </button>
                             </div>
                         </div>
 
-
-
                         <div>
-                            <div className="px-3 text-[11px] font-heading font-medium text-black/40 mb-2 uppercase tracking-wider">Locations</div>
+                            <div className={SIDEBAR_HEADING}>Locations</div>
                             <div className="flex flex-col gap-0.5">
                                 <a href="https://www.linkedin.com/in/cch0/" className={sidebarAnchorClass}>
                                     <Linkedin size={iconSize} className="text-[#0011FF]" /> Linkedin

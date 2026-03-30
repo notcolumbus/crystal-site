@@ -5,17 +5,12 @@ import { FeaturedCards } from '../components/sections/FeaturedCards';
 import { AboutMeSection } from '../components/sections/AboutMeSection';
 import { useSection } from '../context/SectionContext';
 import { ArrowDown } from 'lucide-react';
-
-const bgStyle = {
-    backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0)',
-    backgroundSize: '24px 24px',
-    backgroundColor: 'white'
-};
+import { DOTTED_BG } from '../lib/styles';
 
 const HomeSection = () => {
     const constraintsRef = useRef<HTMLDivElement>(null);
     return (
-        <div className="absolute inset-0 w-full h-full" style={bgStyle} ref={constraintsRef}>
+        <div className="absolute inset-0 w-full h-full" style={DOTTED_BG} ref={constraintsRef}>
             {homeFiles.map((file) => (
                 <DraggableNode key={file.id} item={file} constraintsRef={constraintsRef} />
             ))}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import './Folder.css';
 
 interface FolderProps {
@@ -28,7 +28,6 @@ const darkenColor = (hex: string, percent: number): string => {
 };
 
 const getCircularPosition = (index: number, total: number, radius: number) => {
-  // Spread items in a semicircle above the folder (from 210° to 330°, with top at 270°)
   const startAngle = 210;
   const endAngle = 330;
   const angle = total === 1
@@ -37,59 +36,26 @@ const getCircularPosition = (index: number, total: number, radius: number) => {
   const rad = (angle * Math.PI) / 180;
   const x = Math.cos(rad) * radius;
   const y = Math.sin(rad) * radius;
-  // Rotation: items tilt outward from center, 0° at top (270°)
   const rotation = (angle - 270) * 0.4;
   return { x, y, rotation };
 };
 
-const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, expandScale = 1.6, items = [], className = '' }) => {
-  const papers = items.slice(0, 6);
+const EXPAND_RADIUS = 76;
 
+const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, expandScale = 1.6, items = [], className = '' }) => {
+  const papers = useMemo(() => items.slice(0, 6), [items]);
   const [open, setOpen] = useState(false);
-  const [_paperOffsets, setPaperOffsets] = useState<{ x: number; y: number }[]>(
-    Array.from({ length: papers.length }, () => ({ x: 0, y: 0 }))
-  );
 
   const folderBackColor = darkenColor(color, 0.08);
-  const paper1 = darkenColor('#ffffff', 0.1);
-  const paper2 = darkenColor('#ffffff', 0.05);
-  const paper3 = '#ffffff';
 
-  const handleClick = () => {
-    setOpen(prev => !prev);
-    if (open) {
-      setPaperOffsets(Array.from({ length: papers.length }, () => ({ x: 0, y: 0 })));
-    }
-  };
-
-  const handlePaperMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, index: number) => {
-    if (!open) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    const offsetX = (e.clientX - centerX) * 0.15;
-    const offsetY = (e.clientY - centerY) * 0.15;
-    setPaperOffsets(prev => {
-      const newOffsets = [...prev];
-      newOffsets[index] = { x: offsetX, y: offsetY };
-      return newOffsets;
-    });
-  };
-
-  const handlePaperMouseLeave = (_e: React.MouseEvent<HTMLDivElement, MouseEvent>, index: number) => {
-    setPaperOffsets(prev => {
-      const newOffsets = [...prev];
-      newOffsets[index] = { x: 0, y: 0 };
-      return newOffsets;
-    });
-  };
+  const positions = useMemo(
+    () => papers.map((_, i) => getCircularPosition(i, papers.length, EXPAND_RADIUS)),
+    [papers.length]
+  );
 
   const folderStyle: React.CSSProperties = {
     '--folder-color': color,
     '--folder-back-color': folderBackColor,
-    '--paper-1': paper1,
-    '--paper-2': paper2,
-    '--paper-3': paper3
   } as React.CSSProperties;
 
   const folderClassName = `folder ${open ? 'open' : ''}`.trim();
@@ -97,10 +63,10 @@ const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, expandScal
 
   return (
     <div style={scaleStyle} className={className}>
-      <div className={folderClassName} style={folderStyle} onClick={handleClick}>
+      <div className={folderClassName} style={folderStyle} onClick={() => setOpen(prev => !prev)}>
         <div className="folder__back">
           {papers.map((item, i) => {
-            const pos = getCircularPosition(i, papers.length, 76);
+            const pos = positions[i];
             const openStyle: React.CSSProperties = open
               ? {
                   transform: `translate(calc(-50% + ${pos.x}px), calc(10% + ${pos.y}px)) rotate(${pos.rotation}deg) scale(${expandScale})`,
@@ -108,13 +74,7 @@ const Folder: React.FC<FolderProps> = ({ color = '#5227FF', size = 1, expandScal
                 }
               : {};
             return (
-              <div
-                key={i}
-                className="paper"
-                onMouseMove={e => handlePaperMouseMove(e, i)}
-                onMouseLeave={e => handlePaperMouseLeave(e, i)}
-                style={openStyle}
-              >
+              <div key={i} className="paper" style={openStyle}>
                 {item}
               </div>
             );

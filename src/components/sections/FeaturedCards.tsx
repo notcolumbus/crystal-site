@@ -1,4 +1,5 @@
 import { featuredProjects } from '../../data/files';
+import { DOTTED_BG } from '../../lib/styles';
 import type { FeaturedProject } from '../../types';
 
 const FeaturedCard = ({ project }: { project: FeaturedProject }) => {
@@ -69,7 +70,7 @@ const FeaturedCard = ({ project }: { project: FeaturedProject }) => {
 };
 
 export const FeaturedCards = () => (
-    <div className="absolute inset-0 w-full h-full pt-[52px]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0)', backgroundSize: '24px 24px', backgroundColor: 'white' }}>
+    <div className="absolute inset-0 w-full h-full pt-[52px]" style={DOTTED_BG}>
         <div className="grid grid-cols-2 grid-rows-2 gap-10 p-16 h-full">
             {featuredProjects.map((project) => (
                 <FeaturedCard key={project.id} project={project} />
