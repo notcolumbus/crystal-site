@@ -2,6 +2,7 @@ import type { DraggableItem, FeaturedProject } from '../types/index';
 import { ClockWidget } from '../components/widgets/ClockWidget';
 import { MemoWidget } from '../components/widgets/MemoWidget';
 import { ImageWidget } from '../components/widgets/ImageWidget';
+import { ExperienceWidget } from '../components/widgets/ExperienceWidget';
 import crystalIcelandImg from '../assets/crystal_in_iceland.jpg';
 
 export const SECTIONS = [
@@ -14,6 +15,7 @@ export const homeFiles: DraggableItem[] = [
     { id: 'intro-text', name: 'memo', type: 'widget', widget: <MemoWidget content={`Hi, I'm Crystal — a Product Designer building\n*efficient, impactful *experiences\nwith *intention.*\n\nPreviously @Xometry`} />, pos: { left: '3%', top: '9%' } },
     { id: 'crystal-iceland', name: 'crystal_in_iceland.jpg', type: 'widget', widget: <ImageWidget src={crystalIcelandImg} alt="Crystal in Iceland" />, showLabel: true, pos: { left: '35%', top: '28%' } },
     { id: 'clock-widget', name: 'clock', type: 'widget', widget: <ClockWidget />, pos: { right: '2%', top: '9%' } },
+    { id: 'experience-widget', name: 'experience', type: 'widget', widget: <ExperienceWidget />, showLabel: true, pos: { right: '5%', bottom: '12%' } },
 
     {
         id: 'applications-folder', name: 'applications', type: 'folder', pos: { left: '11%', top: '50%' },

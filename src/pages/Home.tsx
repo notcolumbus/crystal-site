@@ -45,7 +45,7 @@ export const Home = () => {
                     key={section.id}
                     ref={(el) => registerRef(i, el)}
                     id={`section-${section.id}`}
-                    className="w-full h-full snap-start snap-always relative shrink-0"
+                    className={`w-full h-full snap-start relative shrink-0 ${i < sections.length - 1 ? 'snap-always' : ''}`}
                 >
                     <SectionContent index={i} />
                     {i === 0 && (
